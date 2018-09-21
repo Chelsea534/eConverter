@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="test.SiteMaster" %>
 
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %> 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -23,7 +25,7 @@
     <link href="./Content/sb-admin-2.css" rel="stylesheet"/>
 
 	    <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet"/>
+    <link href="./vendor/morrisjs/morris.css" rel="stylesheet"/>
 
     <!-- Custom Fonts -->
     <link href="./vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
@@ -40,8 +42,9 @@
 <body>
    
     <form id="form1" runat="server">
+		 <asp:ScriptManager runat="server" ID="ScriptManager1" />
          <div id="wrapper">
-
+			
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -89,7 +92,7 @@
                                     <a href="commitOrder">Commit Order</a>
                                 </li>
 								<li>
-                                    <a href="update">Update</a>
+                                    <a href="updateOrder">Update</a>
                                 </li>
                                 
                             </ul>
@@ -118,7 +121,7 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+			  
 			  <div class="container body-content" id="page-wrapper">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
@@ -154,7 +157,7 @@
     <script src="./vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="./vendor/datatables-responsive/dataTables.responsive.js"></script>
 
-		<script>
+		<script type="text/javascript">
 
 		$(document).ready(function() {
         $('#dataTables-example').DataTable({

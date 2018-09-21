@@ -32,6 +32,33 @@ Partial Public Class commitOrder
     Protected WithEvents dataFilter As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''upCrudGrid control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upCrudGrid As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''btnUpdate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnUpdate As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''upEdit control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents upEdit As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
     '''Label1 control.
     '''</summary>
     '''<remarks>
@@ -158,13 +185,13 @@ Partial Public Class commitOrder
     Protected WithEvents total As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''update control.
+    '''btnSave control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents update As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''commitOrder control.

@@ -109,10 +109,29 @@
 	</div>
 
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="well">
-				<div class="row">
-					<div class="col-lg-4">
+			<div class="col-lg-3 form-group">
+						<asp:UpdatePanel ID="upCrudGrid" runat="server">
+							<ContentTemplate>
+								<asp:Button ID="btnUpdate" CssClass="btn btn-lg btn-success btn-block" Text="Update" runat="server" OnClick="btnUpdate_Click" />
+							</ContentTemplate>
+						  <Triggers>
+                </Triggers>
+							</asp:UpdatePanel>
+						</div>
+	</div>
+
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel">Edit Content</h4>
+                                        </div>
+										<asp:UpdatePanel ID="upEdit" runat="server">
+                    <ContentTemplate>
+                                        <div class="modal-body">
+                                           
+					
 						<div class="form-group">
 							<asp:Label ID="Label1" runat="server" Text="No.Order" AssociatedControlID="noOrder" />
 							<asp:TextBox ID="noOrder" CssClass="form-control" runat="server" disabled="true" />
@@ -122,9 +141,9 @@
 							<asp:Label ID="Label2" runat="server" Text="Nama" AssociatedControlID="nama" />
 							<asp:TextBox ID="nama" CssClass="form-control" runat="server" disabled="true" />
 						</div>
-					</div>
+					
 
-					<div class="col-lg-4">
+					
 						<div class="form-group">
 							<asp:Label ID="Label3" runat="server" Text="Item" AssociatedControlID="item" />
 							<asp:TextBox ID="item" CssClass="form-control" runat="server" />
@@ -149,21 +168,25 @@
 							<asp:Label ID="Label7" runat="server" Text="Total" AssociatedControlID="total" />
 							<asp:TextBox ID="total" CssClass="form-control" runat="server" />
 						</div>
-					</div>
+					
+					
+                                        </div>
+                                        <div class="modal-footer">
+                                            <asp:Button ID="btnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="btnSave_Click" />
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        </div>
+						</ContentTemplate>
+											 <Triggers>
+                 
+                        <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                    </Triggers>
+											</asp:UpdatePanel>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
 
-					<div class="col-lg-4">
-						<asp:Button ID="update" CssClass="btn btn-lg btn-success btn-block" Text="Update" runat="server" />
-
-					</div>
-				</div>
-
-
-			</div>
-
-
-		</div>
-
-	</div>
+                            </div>
 
 	<div class="form-group">
 		<asp:Button ID="commitOrder" CssClass="btn btn-lg btn-success btn-block" Text="Commit Order" runat="server" />
