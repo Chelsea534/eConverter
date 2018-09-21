@@ -186,7 +186,6 @@
     <Content Include="Scripts\WebForms\WebForms.js" />
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
-    <Content Include="test.aspx" />
     <Content Include="updateOrder.aspx" />
     <Content Include="vendor\bootstrap-social\bootstrap-social.css" />
     <Content Include="vendor\bootstrap\css\bootstrap.css" />
@@ -342,13 +341,6 @@
     <Compile Include="Site.Master.vb">
       <DependentUpon>Site.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="test.aspx.designer.vb">
-      <DependentUpon>test.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="test.aspx.vb">
-      <DependentUpon>test.aspx</DependentUpon>
-      <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="updateOrder.aspx.designer.vb">
       <DependentUpon>updateOrder.aspx</DependentUpon>
