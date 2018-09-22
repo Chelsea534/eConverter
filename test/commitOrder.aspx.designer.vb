@@ -32,6 +32,15 @@ Partial Public Class commitOrder
     Protected WithEvents dataFilter As Global.System.Web.UI.WebControls.DropDownList
     
     '''<summary>
+    '''GridView1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
     '''upCrudGrid control.
     '''</summary>
     '''<remarks>

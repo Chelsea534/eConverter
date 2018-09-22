@@ -41,7 +41,31 @@
 
 	<div class="row">
 		<div class="col-lg-12">
-			<div class="table-responsive">
+            <div class="table-responsive">
+            <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False">
+                <Columns>
+        <asp:BoundField DataField="RowNumber" HeaderText="Row Number" />
+        <asp:TemplateField HeaderText="Header 1">
+            <ItemTemplate>
+                <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Header 2">
+            <ItemTemplate>
+                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+            </ItemTemplate>
+        </asp:TemplateField>
+        <asp:TemplateField HeaderText="Header 3">
+            <ItemTemplate>
+                 <asp:TextBox ID="TextBox3" runat="server"></asp:TextBox>
+            </ItemTemplate>
+                    </asp:TemplateField>
+        </Columns>
+            </asp:GridView>
+    
+            </div>
+            
+			<!-- <div class="table-responsive">
 				<table class="table table-bordered table-hover table-striped">
 					<thead>
 						<tr>
@@ -102,8 +126,8 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
-			<!-- /.table-responsive -->
+			</div>-->
+			<!-- /.table-responsive --> 
 
 		</div>
 	</div>
