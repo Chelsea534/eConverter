@@ -10,10 +10,12 @@
 	</div>
 	<!-- /.row -->
 	<div class="row">
-		<div class="col-lg-3 col-md-6">
+		<div class="col-lg-6 col-md-6">
 			<div class="form-group">
 				<label>File input</label>
-				<input type="file" />
+				 <div class="upload-drop-zone" id="drop-zone">
+            Just drag and drop files here
+          </div>
 			</div>
 		</div>
 		<div class="col-lg-2 col-md-6">
@@ -133,17 +135,31 @@
 	</div>
 
 	<div class="row">
-			<div class="col-lg-3 form-group">
-						<asp:UpdatePanel ID="upCrudGrid" runat="server">
-							<ContentTemplate>
-								<asp:Button ID="btnUpdate" CssClass="btn btn-lg btn-success btn-block" Text="Update" runat="server" OnClick="btnUpdate_Click" />
-							</ContentTemplate>
+			<asp:UpdatePanel ID="tableController" runat="server">
+				<ContentTemplate>
+			<div class="col-lg-3 col-md-3 form-group">
+
+								
+							<asp:Button ID="BtnAdd" CssClass="btn btn-success btn-block" Text="Tambah Transaksi Manual" runat="server" OnClick="BtnAdd_Click" />
+								
+							
+						</div>
+					<div class="col-lg-3 col-md-3 form-group">
+
+								<asp:Button ID="BtnUpdate" CssClass="btn btn-primary btn-block" Text="Edit" runat="server" OnClick="BtnUpdate_Click" />
+								
+						</div>
+					<div class="col-lg-3 col-md-3 form-group">
+
+								<asp:Button ID="BtnDelete" CssClass="btn  btn-danger btn-block" Text="Hapus" runat="server" OnClick="BtnDelete_Click" />
+							
+						</div>
+					</ContentTemplate>
 						  <Triggers>
                 </Triggers>
-							</asp:UpdatePanel>
-						</div>
+				</asp:UpdatePanel>
 	</div>
-
+	<!--  Update modal box -->
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -196,25 +212,122 @@
 					
                                         </div>
                                         <div class="modal-footer">
-                                            <asp:Button ID="btnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="btnSave_Click" />
+                                            <asp:Button ID="BtnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="BtnSave_Click" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                                         </div>
 						</ContentTemplate>
 											 <Triggers>
                  
-                        <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="BtnSave" EventName="Click" />
                     </Triggers>
 											</asp:UpdatePanel>
                                     </div>
                                     <!-- /.modal-content -->
                                 </div>
                                 <!-- /.modal-dialog -->
-
                             </div>
+	<!-- /Update modal box -->
 
-	<div class="form-group">
-		<asp:Button ID="commitOrder" CssClass="btn btn-lg btn-success btn-block" Text="Commit Order" runat="server" />
+	<!--  Tambah manual transaksi modal box -->
+	<div class="modal fade" id="AddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel1">Add Manual</h4>
+                                        </div>
+										<asp:UpdatePanel ID="AddPanel1" runat="server">
+                    <ContentTemplate>
+                                        <div class="modal-body">
+                                           
+					
+						<div class="form-group">
+							<asp:Label ID="Label8" runat="server" Text="No.Order" AssociatedControlID="addNoOrder" />
+							<asp:TextBox ID="addNoOrder" CssClass="form-control" runat="server" />
+						</div>
+
+						<div class="form-group">
+							<asp:Label ID="Label9" runat="server" Text="Nama" AssociatedControlID="addNama" />
+							<asp:TextBox ID="addNama" CssClass="form-control" runat="server" />
+						</div>
+					
+						<div class="form-group">
+							<asp:Label ID="Label10" runat="server" Text="Item" AssociatedControlID="addItem" />
+							<asp:TextBox ID="addItem" CssClass="form-control" runat="server" />
+						</div>
+
+						<div class="form-group">
+							<asp:Label ID="Label11" runat="server" Text="Service" AssociatedControlID="addService" />
+							<asp:TextBox ID="addService" CssClass="form-control" runat="server" />
+						</div>
+
+						<div class="form-group">
+							<asp:Label ID="Label12" runat="server" Text="Keterangan" AssociatedControlID="addKeterangan" />
+							<asp:TextBox ID="addKeterangan" CssClass="form-control" runat="server" />
+						</div>
+
+						<div class="form-group">
+							<asp:Label ID="Label13" runat="server" Text="Harga" AssociatedControlID="addHarga" />
+							<asp:TextBox ID="addHarga" CssClass="form-control" runat="server" />
+						</div>
+
+						<div class="form-group">
+							<asp:Label ID="Label14" runat="server" Text="Total" AssociatedControlID="addTotal" />
+							<asp:TextBox ID="addTotal" CssClass="form-control" runat="server" />
+						</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <asp:Button ID="BtnManualAddSave" runat="server" Text="Simpan" CssClass="btn btn-info" OnClick="BtnManualAddSave_Click" />
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
+                                        </div>
+						</ContentTemplate>
+											 <Triggers>
+                 
+                        <asp:AsyncPostBackTrigger ControlID="BtnManualAddSave" EventName="Click" />
+                    </Triggers>
+											</asp:UpdatePanel>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+	<!-- /Tambah manual transaksi modal box -->
+
+		<!--  Hapus Data modal box -->
+	<div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                            <h4 class="modal-title" id="myModalLabel2">Add Manual</h4>
+                                        </div>
+										<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                                        <div class="modal-body">
+                                           
+					<p>Hapus data? </p>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                            <asp:Button ID="BtnDelData" runat="server" Text="Hapus" CssClass="btn btn-info" OnClick="BtnDelData_Click" />
+                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Batal</button>
+                                        </div>
+						</ContentTemplate>
+											 <Triggers>
+                 
+                        <asp:AsyncPostBackTrigger ControlID="BtnDelData" EventName="Click" />
+                    </Triggers>
+											</asp:UpdatePanel>
+                                    </div>
+                                    <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+	<!-- /Hapus data modal box -->
+	<div class="row">
+	<div class="form-group col-lg-4">
+		<asp:Button ID="CommitOrder" CssClass="btn btn-lg btn-info btn-block" Text="Commit Order" runat="server" />
 
 	</div>
-
+		</div>
 </asp:Content>

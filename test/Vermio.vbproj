@@ -156,6 +156,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="loginForm.aspx" />
+    <Content Include="masterData.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -314,6 +315,13 @@
     </Compile>
     <Compile Include="loginForm.aspx.vb">
       <DependentUpon>loginForm.aspx</DependentUpon>
+      <SubType>ASPXCodebehind</SubType>
+    </Compile>
+    <Compile Include="masterData.aspx.designer.vb">
+      <DependentUpon>masterData.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="masterData.aspx.vb">
+      <DependentUpon>masterData.aspx</DependentUpon>
       <SubType>ASPXCodebehind</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />

@@ -85,23 +85,24 @@
                         <li>
                             <a href="Default"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
+						 <li>
+                            <a href="masterData"><i class="fa fa-archive fa-fw"></i> Master Data</a>
+                        </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Proses Order<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-spinner fa-fw"></i> Proses Order<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="commitOrder">Commit Order</a>
+                                    <a href="commitOrder"><i class="fa fa-cart-plus"></i> Commit Order</a>
                                 </li>
 								<li>
-                                    <a href="updateOrder">Update</a>
+                                    <a href="updateOrder"><i class ="fa fa-pencil-square-o "></i> Update</a>
                                 </li>
                                 
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                     
-                        <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
+                       
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i>Gudang<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">

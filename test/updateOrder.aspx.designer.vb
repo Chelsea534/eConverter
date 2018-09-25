@@ -23,13 +23,13 @@ Partial Public Class update
     Protected WithEvents upCrudGrid As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''btnUpdate control.
+    '''BtnUpdate control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnUpdate As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents BtnUpdate As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''upEdit control.
@@ -167,11 +167,11 @@ Partial Public Class update
     Protected WithEvents total As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''btnSave control.
+    '''BtnSave control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents btnSave As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents BtnSave As Global.System.Web.UI.WebControls.Button
 End Class

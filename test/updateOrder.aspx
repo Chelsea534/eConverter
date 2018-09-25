@@ -95,10 +95,10 @@
 	</div>
 	
 	<div class="row">
-					<div class="col-lg-3">
+					<div class="col-lg-3 col-md-3">
 						<asp:UpdatePanel ID="upCrudGrid" runat="server">
 							<ContentTemplate>
-								<asp:Button ID="btnUpdate" CssClass="btn btn-lg btn-success btn-block" Text="Update" runat="server" OnClick="btnUpdate_Click" />
+								<asp:Button ID="BtnUpdate" CssClass="btn btn-primary btn-block" Text="Edit" runat="server" OnClick="BtnUpdate_Click" />
 							</ContentTemplate>
 						  <Triggers>
                 </Triggers>
@@ -160,13 +160,13 @@
 					
                                         </div>
                                         <div class="modal-footer">
-                                            <asp:Button ID="btnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="btnSave_Click" />
+                                            <asp:Button ID="BtnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="BtnSave_Click" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                                         </div>
 						</ContentTemplate>
 											 <Triggers>
                  
-                        <asp:AsyncPostBackTrigger ControlID="btnSave" EventName="Click" />
+                        <asp:AsyncPostBackTrigger ControlID="BtnSave" EventName="Click" />
                     </Triggers>
 											</asp:UpdatePanel>
                                     </div>

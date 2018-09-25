@@ -5,7 +5,7 @@
 
 	End Sub
 
-	Protected Sub btnUpdate_Click(sender As Object, e As EventArgs) Handles btnUpdate.Click
+	Protected Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
 		'Dim cs As ClientScriptManager = Page.ClientScript
 		'Dim csType As Type = Me.GetType()
 		Dim builder As New StringBuilder()
@@ -18,7 +18,8 @@
 
 	End Sub
 
-	Protected Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+	Protected Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
 		MsgBox("saved!")
+
 	End Sub
 End Class
