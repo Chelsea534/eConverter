@@ -14,6 +14,24 @@ Option Explicit On
 Partial Public Class masterData
     
     '''<summary>
+    '''UpdatePanel4 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents UpdatePanel4 As Global.System.Web.UI.UpdatePanel
+    
+    '''<summary>
+    '''GridView1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents GridView1 As Global.System.Web.UI.WebControls.GridView
+    
+    '''<summary>
     '''tableControllerSku control.
     '''</summary>
     '''<remarks>
@@ -32,22 +50,139 @@ Partial Public Class masterData
     Protected WithEvents BtnAddSku As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
-    '''BtnUpdateSku control.
+    '''UpdatePanel2 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnUpdateSku As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents UpdatePanel2 As Global.System.Web.UI.UpdatePanel
     
     '''<summary>
-    '''BtnDeleteSku control.
+    '''Label15 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents BtnDeleteSku As Global.System.Web.UI.WebControls.Button
+    Protected WithEvents Label15 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbidsku control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbidsku As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Label18 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label18 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbqty control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbqty As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Label20 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label20 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbharga control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbharga As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''Label16 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label16 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''tbsku control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbsku As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Label17 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label17 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''tbnamasku control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbnamasku As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Label19 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label19 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''tbberat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbberat As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''BtnMdlUpdateSKU control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnMdlUpdateSKU As Global.System.Web.UI.WebControls.Button
+    
+    '''<summary>
+    '''BtnMdlDeleteSKU control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents BtnMdlDeleteSKU As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''upEdit control.
@@ -212,31 +347,13 @@ Partial Public Class masterData
     Protected WithEvents Label8 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''addNoOrder control.
+    '''lbnewSKU control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents addNoOrder As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label9 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''addNama control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents addNama As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbnewSKU As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Label10 control.
@@ -248,31 +365,13 @@ Partial Public Class masterData
     Protected WithEvents Label10 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''addItem control.
+    '''lbnewQTY control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents addItem As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label11 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label11 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''addService control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents addService As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbnewQTY As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Label12 control.
@@ -284,31 +383,13 @@ Partial Public Class masterData
     Protected WithEvents Label12 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''addKeterangan control.
+    '''lbnewHARGA control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents addKeterangan As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label13 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label13 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''addHarga control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents addHarga As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents lbnewHARGA As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Label14 control.
@@ -320,13 +401,49 @@ Partial Public Class masterData
     Protected WithEvents Label14 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''addTotal control.
+    '''tbnewSKU control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents addTotal As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents tbnewSKU As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Label21 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label21 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''tbnewNamaSKU control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbnewNamaSKU As Global.System.Web.UI.WebControls.TextBox
+    
+    '''<summary>
+    '''Label22 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label22 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''tbnewBerat control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tbnewBerat As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''BtnManualAddSaveSku control.
