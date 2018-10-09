@@ -61,6 +61,9 @@
                                         <asp:Label ID="HARGA" runat="server" Text='<%# Eval("HARGA") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
+                                <asp:ImageField HeaderText="Gambar" DataImageUrlField="GAMBAR_PATH" ControlStyle-Height="80" ControlStyle-Width="80">
+                                    <ControlStyle Height="80px" Width="80px" />
+                                </asp:ImageField>
                             </Columns>
                         </asp:GridView>
                     </ContentTemplate>
@@ -237,11 +240,18 @@
                                 <asp:Label ID="Label22" runat="server" Text="Berat" />
                                 <asp:TextBox ID="tbnewBerat" CssClass="form-control" runat="server" Text=""/>
                             </div>
+                            <div class="form-group">
+                                <asp:Label ID="Label9" runat="server" Text="Gambar" />
+                                <div class="upload-drop-zone" id="drop-zone">
+                                    Just drag and drop files here
+                                </div>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="BtnManualAddSaveSku" runat="server" Text="Simpan" CssClass="btn btn-info" OnClick="BtnManualAddSaveSku_Click" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                         </div>
+                        
                     </ContentTemplate>
                     <Triggers>
 

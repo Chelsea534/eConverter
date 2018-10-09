@@ -446,6 +446,15 @@ Partial Public Class masterData
     Protected WithEvents tbnewBerat As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Label9 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''BtnManualAddSaveSku control.
     '''</summary>
     '''<remarks>
