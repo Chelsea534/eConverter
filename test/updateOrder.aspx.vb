@@ -5,12 +5,14 @@
 
 	End Sub
 
-	Protected Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
+	Protected Sub BtnUpdate_Click(sender As Object, e As EventArgs) Handles BtnUpdate.Click
 		'Dim cs As ClientScriptManager = Page.ClientScript
 		'Dim csType As Type = Me.GetType()
 		Dim builder As New StringBuilder()
 		builder.Append("<script type='text/javascript'>")
 		builder.Append("$('#editModal').modal({backdrop: 'static', keyboard: false});")
+		'builder.Append("$('#editModal').modal('hide');")
+
 		builder.Append("</script>")
 		'cs.RegisterClientScriptBlock(csType, "EditShowModalScript", builder.ToString(), True)
 		'cs.RegisterStartupScript(csType, "EditShowModalScript", builder.ToString(), True)
@@ -20,6 +22,11 @@
 
 	Protected Sub BtnSave_Click(sender As Object, e As EventArgs) Handles BtnSave.Click
 		MsgBox("saved!")
+		'Dim builder As New StringBuilder()
+		'builder.Append("<script type='text/javascript'>")
+		'builder.Append("$('#editModal').modal('hide');")
+		'builder.Append("</script>")
+		'ScriptManager.RegisterClientScriptBlock(Me, Me.GetType, "CloseModal-UpdateOrderScript", builder.ToString(), False)
 
 	End Sub
 End Class
