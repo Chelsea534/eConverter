@@ -1,6 +1,10 @@
 ﻿Imports System.Data
 Imports MySql.Data.MySqlClient
 Imports System.Configuration
+Imports System
+Imports AjaxControlToolkit
+Imports System.IO
+
 Public Class masterData
     Inherits System.Web.UI.Page
     'Public conn As MySqlConnection
@@ -84,15 +88,25 @@ Public Class masterData
     End Sub
     Protected Sub BtnManualAddSaveSku_Click(sender As Object, e As EventArgs) Handles BtnManualAddSaveSku.Click
         Try
+            Dim strname As String
             Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
+            'If FileUpload1.HasFile Then
+            'strname = FileUpload1.FileName.ToString()
+            'MsgBox(strname)
+            'FileUpload1.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & strname)
+            'FileUpload.SaveAs(Server.MapPath("~/GambarProduk/" & strname))
+            'Else
+            'strname = "noimage.jpg"
+            ' End If
             Using con As New MySqlConnection(constr)
-                Using cmd As New MySqlCommand("INSERT INTO TABEL_SKU (SKU,NAMA,QTY,BERAT,HARGA) VALUES (@SKU, @NAMA, @QTY, @BERAT, @HARGA)")
+                Using cmd As New MySqlCommand("INSERT INTO TABEL_SKU (SKU,NAMA,QTY,BERAT,HARGA,GAMBAR_PATH) VALUES (@SKU, @NAMA, @QTY, @BERAT, @HARGA, @GAMBAR_PATH)")
                     Using sda As New MySqlDataAdapter()
                         cmd.Parameters.AddWithValue("@SKU", tbnewSKU.Text)
                         cmd.Parameters.AddWithValue("@NAMA", tbnewNamaSKU.Text)
                         cmd.Parameters.AddWithValue("@QTY", "0")
                         cmd.Parameters.AddWithValue("@BERAT", tbnewBerat.Text)
                         cmd.Parameters.AddWithValue("@HARGA", "0")
+                        cmd.Parameters.AddWithValue("@GAMBAR_PATH", strname)
                         cmd.Connection = con
                         con.Open()
                         cmd.ExecuteNonQuery()
@@ -168,5 +182,62 @@ Public Class masterData
         lbharga.Text = TryCast(row.FindControl("HARGA"), Label).Text
         'ClientScript.RegisterStartupScript(Me.[GetType](), "Pop", "openModalEditSKU();", True)
         showModal("#myModalEditTabelSKU")
+    End Sub
+
+    Protected Sub upload_Click(sender As Object, e As EventArgs)
+        MsgBox("simvan")
+        'If fileupload1.HasFile Then
+        'Dim strname As String
+        'strname = fileupload1.FileName.ToString()
+        'MsgBox(strname)
+        'fileupload1.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & strname)
+        'FileUpload.SaveAs(Server.MapPath("~/GambarProduk/" & strname))
+        'End If
+    End Sub
+
+    Protected Sub Button1_Click(sender As Object, e As EventArgs)
+        'MsgBox("simvanmonobox")
+        'If AsyncFileUpload1.HasFile Then
+        'Dim fileSize As Double = CDbl(AsyncFileUpload1.FileBytes.Length)
+        'Dim fileinMB As Double = fileSize / (1024 * 1024)
+        'If fileinMB <= 2 Then
+        'Dim strname As String
+        'strname = AsyncFileUpload1.FileName.ToString()
+        'AsyncFileUpload1.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & strname)
+        'MsgBox(strname & " sukses disimpan")
+        'FileUpload.SaveAs(Server.MapPath("~/GambarProduk/" & strname))xxx
+        'Else
+        ' MsgBox("File kudu < 2 MB")
+        'End If
+        'End If
+    End Sub
+    Protected Sub AjaxFileUpload1_UploadComplete(ByVal sender As Object, ByVal e As AjaxControlToolkit.AjaxFileUploadEventArgs)
+        Try
+            Dim savePath As String = MapPath("~/GambarProduk/" & e.FileName)
+
+            If e.FileSize > 72000 Then
+                Return
+            End If
+
+            'AsyncFileUpload1.SaveAs(savePath)
+        Catch ex As Exception
+            Throw ex
+        End Try
+    End Sub
+
+    Public Sub AfuUpload_UploadedComplete(ByVal sender As Object, ByVal e As AsyncFileUploadEventArgs)
+        Try
+            'Dim savePath As String = MapPath("~/GambarProduk/" & Path.GetFileName(e.FileName))
+            'AsyncFileUpload1.SaveAs(savePath)
+            'MsgBox("tada server")
+            'Session("ImageBytes") = afuUpload.FileBytes
+            'ImagePreview.ImageUrl = "~/ImageHandler.ashx"
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+    Public Sub AfuUpload_UploadedFileError(ByVal sender As Object, ByVal e As AsyncFileUploadEventArgs)
+
     End Sub
 End Class

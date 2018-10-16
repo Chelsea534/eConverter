@@ -6,8 +6,23 @@
 			<h1 class="page-header">Master Data</h1>
 		</div>
 	</div>
+    <div>
+        
+   <!-- <script type="text/javascript">
+        function uploadComplete(sender, args) {
+            try {
+            alert("tada");
+            $get("dvFileInfo").style.display = 'block';
+            $get("<%=lblSuccess.ClientID%>").innerHTML="File uploaded";
+        }
+        catch (e) {
+            alert("ERRORX")
+        }
+        }        
+    </script> -->
 
-
+    </div>
+    
 	<!-- SKU Table -->
 	<div class="row">
 		<div class="col-lg-12">
@@ -230,31 +245,100 @@
                             <br />
                             <div class="form-group">
                                 <asp:Label ID="Label14" runat="server" Text="SKU" />
-                                <asp:TextBox ID="tbnewSKU" CssClass="form-control" runat="server" Text=""/>
+                                <asp:TextBox ID="tbnewSKU" CssClass="form-control" runat="server" Text="" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label21" runat="server" Text="Nama SKU" />
-                                <asp:TextBox ID="tbnewNamaSKU" CssClass="form-control" runat="server" Text=""/>
+                                <asp:TextBox ID="tbnewNamaSKU" CssClass="form-control" runat="server" Text="" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label22" runat="server" Text="Berat" />
-                                <asp:TextBox ID="tbnewBerat" CssClass="form-control" runat="server" Text=""/>
+                                <asp:TextBox ID="tbnewBerat" CssClass="form-control" runat="server" Text="" />
+                            </div>
+                            
+                            <ajaxToolkit:AsyncFileUpload ID="afuUpload" OnUploadedComplete="afuUpload_UploadedComplete" 
+                                OnUploadedFileError="afuUpload_UploadedFileError" runat="server" OnClientUploadComplete="uploadComplete"
+                                Width="400px" UploaderStyle="Traditional" UploadingBackColor="#CCFFFF" ThrobberID="myThrobber" />
+                            
+                            <br />
+                            <br />
+                            <div style="border-style: solid; display: none; width: 350px" id="dvFileInfo">
+                                <asp:Image ID="gambarPro" runat="server"   />
+                                <asp:Label ID="lblStatus" Font-Bold="true" runat="server" Text="Status:-" />
+                                <asp:Label ID="lblSuccess" ForeColor="Green" runat="server" /><br />
+                                <asp:Label ID="lblFileName" Font-Bold="true" runat="server" Text="FileName :-" />
+                                <asp:Label ID="lblFileNameDisplay" runat="server" /><br />
+                                <asp:Label ID="lblFileSize" Font-Bold="true" runat="server" Text="File Size :- " />
+                                <asp:Label ID="lblFileSizeDisplay" runat="server" /><br />
+                                <asp:Label ID="lblContentType" Font-Bold="true" runat="server" Text="Content Type :-" />
+                                <asp:Label ID="lblContentTypeDisplay" runat="server" /><br />
+                            </div>
+                            <div style="border-style: solid; display: none; width: 350px" id="dvFileErrorInfo">
+                                <asp:Label ID="lblErrorStatus" Font-Bold="true" runat="server" Text="Status:-" />
+                                <asp:Label ID="lblError" ForeColor="Red" runat="server" /><br />
                             </div>
                             <div class="form-group">
-                                <asp:Label ID="Label9" runat="server" Text="Gambar" />
-                                <div class="upload-drop-zone" id="drop-zone">
-                                    Just drag and drop files here
-                                </div>
-                            </div>
+                                <asp:FileUpload ID="inputfile" runat="server" onchange="showimagepreview(this)" accept=".jpg,.png,.jpeg"/>                                
+                                <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" height="150" width="150" />
+                                <asp:Label ID="tmWarning" ForeColor="Red" runat="server" />
+                            </div>                           
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+                            <script type="text/javascript">
+                                function showimagepreview(input) {
+                                    if (input.files && input.files[0]) {
+                                        var filerdr = new FileReader();
+                                        filerdr.onload = function (e) {
+                                            $('#image_upload_preview').attr('src', e.target.result);
+                                        }
+                                        filerdr.readAsDataURL(input.files[0]);
+                                    }
+                                    if (input.files[0].size > 2097152) {
+                                        alert("File is too big!");
+                                        $get("<%=tmWarning.ClientID%>").innerHTML = "File kudu lebih kecil dari 2 MB";
+                                        input.value = "";
+                                    }
+                                }
+                            </script>
+                            <script type="text/javascript">
+                                function uploadComplete(sender, args) {
+                                    try {
+                                        var fileExt = args.get_fileName();
+                                        if (parseInt(args.get_length()) > 2100000) {
+                                            $get("dvFileErrorInfo").style.display = 'block';
+                                            $get("<%=lblErrorStatus.ClientID%>").innerHTML = "File kudu lebih kecil dari 2 MB";
+                                            $get("dvFileInfo").style.display = 'none';
+                                            return;
+                                        }
+                                        if (fileExt.indexOf('.jpg') == -1) {
+                                            $get("dvFileErrorInfo").style.display = 'block';
+                                            $get("<%=lblErrorStatus.ClientID%>").innerHTML = "Harus file gambar .jpg";
+                                            $get("dvFileInfo").style.display = 'none';
+                                            return;
+                                        }
+                                        $get("dvFileInfo").style.display = 'block';
+                                        $get("dvFileErrorInfo").style.display = 'none';
+                                        $get("<%=lblSuccess.ClientID%>").innerHTML = "File uploaded";
+                                        $get("<%=lblFileNameDisplay.ClientID%>").innerHTML = args.get_fileName();
+                                        $get("<%=lblFileSizeDisplay.ClientID%>").innerHTML = args.get_length();
+                                        $get("<%=lblContentTypeDisplay.ClientID%>").innerHTML = args.get_contentType();
+
+                                        var photo = document.getElementById("afuUpload");
+                                        var file = photo.files[0];
+                                        var preview = document.getElementById("gambarPro");
+                                        preview.src = file.getAsDataURL();
+                                    }
+                                    catch (e) {
+                                        alert(e.message)
+                                    }
+                                }
+                            </script>
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="BtnManualAddSaveSku" runat="server" Text="Simpan" CssClass="btn btn-info" OnClick="BtnManualAddSaveSku_Click" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                         </div>
-                        
                     </ContentTemplate>
                     <Triggers>
-
                         <asp:AsyncPostBackTrigger ControlID="BtnManualAddSaveSku" EventName="Click" />
                     </Triggers>
                 </asp:UpdatePanel>
@@ -266,35 +350,35 @@
 	<!-- /Tambah manual transaksi modal box -->
 
 		<!--  Hapus Data modal box -->
-	<div class="modal fade" id="SkuDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                            <h4 class="modal-title" id="myModalLabel2">Add Manual</h4>
-                                        </div>
-										<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+    <div class="modal fade" id="SkuDeleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel2">Add Manual</h4>
+                </div>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
-                                        <div class="modal-body">
-                                           
-					<p>Hapus data? </p>
+                        <div class="modal-body">
 
-                                        </div>
-                                        <div class="modal-footer">
-                                            <asp:Button ID="BtnDelSku" runat="server" Text="Hapus" CssClass="btn btn-info" OnClick="BtnDelSku_Click" />
+                            <p>Hapus data? </p>
+
+                        </div>
+                        <div class="modal-footer">
+                            <asp:Button ID="BtnDelSku" runat="server" Text="Hapus" CssClass="btn btn-info" OnClick="BtnDelSku_Click" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Batal</button>
-                                        </div>
-						</ContentTemplate>
-											 <Triggers>
-                 
+                        </div>
+                    </ContentTemplate>
+                    <Triggers>
+
                         <asp:AsyncPostBackTrigger ControlID="BtnDelSku" EventName="Click" />
                     </Triggers>
-											</asp:UpdatePanel>
-                                    </div>
-                                    <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
-                            </div>
+                </asp:UpdatePanel>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 	<!-- /Hapus data modal box -->
 
 	<!--/Table Sku -->

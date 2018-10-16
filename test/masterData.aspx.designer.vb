@@ -446,13 +446,130 @@ Partial Public Class masterData
     Protected WithEvents tbnewBerat As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''Label9 control.
+    '''afuUpload control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents afuUpload As Global.AjaxControlToolkit.AsyncFileUpload
+    
+    '''<summary>
+    '''gambarPro control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents gambarPro As Global.System.Web.UI.WebControls.Image
+    
+    '''<summary>
+    '''lblStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblSuccess control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblSuccess As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblFileName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFileName As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblFileNameDisplay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFileNameDisplay As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblFileSize control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFileSize As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblFileSizeDisplay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblFileSizeDisplay As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblContentType control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblContentType As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblContentTypeDisplay control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblContentTypeDisplay As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblErrorStatus control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblErrorStatus As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lblError control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''inputfile control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents inputfile As Global.System.Web.UI.WebControls.FileUpload
+    
+    '''<summary>
+    '''tmWarning control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tmWarning As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''BtnManualAddSaveSku control.
