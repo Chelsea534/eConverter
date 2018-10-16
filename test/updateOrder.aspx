@@ -160,7 +160,7 @@
 					
                                         </div>
                                         <div class="modal-footer">
-                                            <asp:Button ID="BtnSave" runat="server" Text="Update" CssClass="btn btn-info" OnClick="BtnSave_Click" />
+                                            <asp:Button ID="BtnSave" runat="server" Text="Update" CssClass="btn btn-info" data-dismiss="modal" OnClick="BtnSave_Click" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                                         </div>
 						</ContentTemplate>

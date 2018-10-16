@@ -326,8 +326,10 @@
 	<!-- /Hapus data modal box -->
 	<div class="row">
 	<div class="form-group col-lg-4">
+		
 		<asp:Button ID="CommitOrder" CssClass="btn btn-lg btn-info btn-block" Text="Commit Order" runat="server" />
 
+		
 	</div>
 		</div>
 </asp:Content>
