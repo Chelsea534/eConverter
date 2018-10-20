@@ -10,14 +10,14 @@ Public Class masterData
     'Public conn As MySqlConnection
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
+            BtnManualAddSaveSku.Attributes.Add("onclick", "DisableButton()")
             Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
             Dim conn As New MySqlConnection(constr)
             Try
                 conn.Open()
-                'Response.Write("Database opened!") JANGAN DIPAKAI, BISA MERUBAH FONT PAGE
                 viewTabelSKU()
             Catch ex As Exception
-                Response.Write(ex.Message)
+                MsgBox(ex.Message)
             End Try
         End If
     End Sub
@@ -37,6 +37,25 @@ Public Class masterData
             End Using
         End Using
     End Sub
+    Function getNextIncrement()
+        Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
+        Dim conn As New MySqlConnection(constr)
+        Try
+            conn.Open()
+            Dim cmd As New MySqlCommand("SELECT `AUTO_INCREMENT` FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'sql12259867' AND TABLE_NAME = 'TABEL_SKU'")
+            cmd.Connection = conn
+            Dim sda As New MySqlDataAdapter()
+            sda.SelectCommand = cmd
+            Dim datardr As MySqlDataReader = cmd.ExecuteReader
+            If datardr.HasRows Then
+                datardr.Read()
+                Return datardr("AUTO_INCREMENT")
+            End If
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        Return 0
+    End Function
     Sub showModal(ByVal modal As String)
         Dim builder As New StringBuilder()
         builder.Append("<script type='text/javascript'>")
@@ -77,9 +96,6 @@ Public Class masterData
 
     End Sub
 
-    Protected Sub BtnSaveSku_Click(sender As Object, e As EventArgs) Handles BtnSaveSku.Click
-
-    End Sub
     Protected Sub BtnAddSku_Click(sender As Object, e As EventArgs) Handles BtnAddSku.Click
         tbnewSKU.Text = ""
         tbnewNamaSKU.Text = ""
@@ -88,16 +104,8 @@ Public Class masterData
     End Sub
     Protected Sub BtnManualAddSaveSku_Click(sender As Object, e As EventArgs) Handles BtnManualAddSaveSku.Click
         Try
-            Dim strname As String
+            'MsgBox(getNextIncrement())
             Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
-            'If FileUpload1.HasFile Then
-            'strname = FileUpload1.FileName.ToString()
-            'MsgBox(strname)
-            'FileUpload1.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & strname)
-            'FileUpload.SaveAs(Server.MapPath("~/GambarProduk/" & strname))
-            'Else
-            'strname = "noimage.jpg"
-            ' End If
             Using con As New MySqlConnection(constr)
                 Using cmd As New MySqlCommand("INSERT INTO TABEL_SKU (SKU,NAMA,QTY,BERAT,HARGA,GAMBAR_PATH) VALUES (@SKU, @NAMA, @QTY, @BERAT, @HARGA, @GAMBAR_PATH)")
                     Using sda As New MySqlDataAdapter()
@@ -106,7 +114,14 @@ Public Class masterData
                         cmd.Parameters.AddWithValue("@QTY", "0")
                         cmd.Parameters.AddWithValue("@BERAT", tbnewBerat.Text)
                         cmd.Parameters.AddWithValue("@HARGA", "0")
-                        cmd.Parameters.AddWithValue("@GAMBAR_PATH", strname)
+                        Dim strname As String
+                        If inputfile.HasFile Then
+                            inputfile.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & getNextIncrement() & ".jpg")
+                            strname = "~/GambarProduk/" & getNextIncrement() & ".jpg"
+                            cmd.Parameters.AddWithValue("@GAMBAR_PATH", strname)
+                        Else
+                            cmd.Parameters.AddWithValue("@GAMBAR_PATH", "~/GambarProduk/DEFAULT.png")
+                        End If
                         cmd.Connection = con
                         con.Open()
                         cmd.ExecuteNonQuery()
@@ -115,10 +130,14 @@ Public Class masterData
                 End Using
             End Using
             viewTabelSKU()
+            closeModal("#SkuAddModal")
+            'Mencegah form re submit
+            Response.Redirect("masterData.aspx", False)
+            Context.ApplicationInstance.CompleteRequest()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        closeModal("#SkuAddModal")
+
     End Sub
 
     Protected Sub BtnDelSku_Click(sender As Object, e As EventArgs) Handles BtnDelSku.Click
@@ -127,7 +146,7 @@ Public Class masterData
             Using con As New MySqlConnection(constr)
                 Using cmd As New MySqlCommand("DELETE FROM TABEL_SKU WHERE ID_SKU = @ID_SKU")
                     Using sda As New MySqlDataAdapter()
-                        cmd.Parameters.AddWithValue("@ID_SKU", lbidsku.Text)
+                        cmd.Parameters.AddWithValue("@ID_SKU", lbeditidsku.Text)
                         cmd.Connection = con
                         con.Open()
                         cmd.ExecuteNonQuery()
@@ -149,10 +168,10 @@ Public Class masterData
             Using con As New MySqlConnection(constr)
                 Using cmd As New MySqlCommand("UPDATE TABEL_SKU SET SKU = @SKU, NAMA = @NAMA, BERAT = @BERAT WHERE ID_SKU = @ID_SKU")
                     Using sda As New MySqlDataAdapter()
-                        cmd.Parameters.AddWithValue("@ID_SKU", lbidsku.Text)
-                        cmd.Parameters.AddWithValue("@SKU", tbsku.Text)
-                        cmd.Parameters.AddWithValue("@NAMA", tbnamasku.Text)
-                        cmd.Parameters.AddWithValue("@BERAT", tbberat.Text)
+                        cmd.Parameters.AddWithValue("@ID_SKU", lbeditidsku.Text)
+                        cmd.Parameters.AddWithValue("@SKU", tbeditsku.Text)
+                        cmd.Parameters.AddWithValue("@NAMA", tbeditnamasku.Text)
+                        cmd.Parameters.AddWithValue("@BERAT", tbeditberat.Text)
                         cmd.Connection = con
                         con.Open()
                         cmd.ExecuteNonQuery()
@@ -211,33 +230,5 @@ Public Class masterData
         'End If
         'End If
     End Sub
-    Protected Sub AjaxFileUpload1_UploadComplete(ByVal sender As Object, ByVal e As AjaxControlToolkit.AjaxFileUploadEventArgs)
-        Try
-            Dim savePath As String = MapPath("~/GambarProduk/" & e.FileName)
 
-            If e.FileSize > 72000 Then
-                Return
-            End If
-
-            'AsyncFileUpload1.SaveAs(savePath)
-        Catch ex As Exception
-            Throw ex
-        End Try
-    End Sub
-
-    Public Sub AfuUpload_UploadedComplete(ByVal sender As Object, ByVal e As AsyncFileUploadEventArgs)
-        Try
-            'Dim savePath As String = MapPath("~/GambarProduk/" & Path.GetFileName(e.FileName))
-            'AsyncFileUpload1.SaveAs(savePath)
-            'MsgBox("tada server")
-            'Session("ImageBytes") = afuUpload.FileBytes
-            'ImagePreview.ImageUrl = "~/ImageHandler.ashx"
-        Catch ex As Exception
-
-        End Try
-    End Sub
-
-    Public Sub AfuUpload_UploadedFileError(ByVal sender As Object, ByVal e As AsyncFileUploadEventArgs)
-
-    End Sub
 End Class

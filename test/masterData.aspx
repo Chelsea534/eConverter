@@ -1,28 +1,12 @@
 ﻿<%@ Page Language="vb" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="masterData.aspx.vb" Inherits="test.masterData" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" enctype="multipart/form-data">
     <div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">Master Data</h1>
 		</div>
 	</div>
-    <div>
-        
-   <!-- <script type="text/javascript">
-        function uploadComplete(sender, args) {
-            try {
-            alert("tada");
-            $get("dvFileInfo").style.display = 'block';
-            $get("<%=lblSuccess.ClientID%>").innerHTML="File uploaded";
-        }
-        catch (e) {
-            alert("ERRORX")
-        }
-        }        
-    </script> -->
 
-    </div>
-    
 	<!-- SKU Table -->
 	<div class="row">
 		<div class="col-lg-12">
@@ -76,7 +60,7 @@
                                         <asp:Label ID="HARGA" runat="server" Text='<%# Eval("HARGA") %>'></asp:Label>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:ImageField HeaderText="Gambar" DataImageUrlField="GAMBAR_PATH" ControlStyle-Height="80" ControlStyle-Width="80">
+                                <asp:ImageField HeaderText="Gambar" DataImageUrlField="GAMBAR_PATH" ControlStyle-Height="80" ControlStyle-Width="80" >
                                     <ControlStyle Height="80px" Width="80px" />
                                 </asp:ImageField>
                             </Columns>
@@ -112,30 +96,29 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <asp:Label ID="Label15" runat="server" Text="ID SKU :" />
-                                <asp:Label ID="lbidsku" runat="server" Text="" />
+                                <asp:Label ID="lbeditidsku" runat="server" Text="" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label18" runat="server" Text="Qty :" />
-                                <asp:Label ID="lbqty" runat="server" Text="" />
+                                <asp:Label ID="lbeditqty" runat="server" Text="" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label20" runat="server" Text="Harga :" />
-                                <asp:Label ID="lbharga" runat="server" Text="" />
+                                <asp:Label ID="lbeditharga" runat="server" Text="" />
                             </div>
                             <br />
                             <div class="form-group">
                                 <asp:Label ID="Label16" runat="server" Text="SKU" />
-                                <asp:TextBox ID="tbsku" CssClass="form-control" runat="server" />
+                                <asp:TextBox ID="tbeditsku" onkeyup="SetButtonStatus2()" CssClass="form-control" runat="server" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label17" runat="server" Text="Nama SKU" />
-                                <asp:TextBox ID="tbnamasku" CssClass="form-control" runat="server" />
+                                <asp:TextBox ID="tbeditnamasku" onkeyup="SetButtonStatus2()" CssClass="form-control" runat="server" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label19" runat="server" Text="Berat" />
-                                <asp:TextBox ID="tbberat" CssClass="form-control" runat="server" />
+                                <asp:TextBox ID="tbeditberat" onkeyup="SetButtonStatus2()" CssClass="form-control" runat="server" />
                             </div>
-
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="BtnMdlUpdateSKU" runat="server" Text="Update" CssClass="btn btn-info" OnClick="BtnMdlUpdateSKU_Click" />
@@ -150,74 +133,6 @@
         <!-- /.modal-dialog -->
     </div>
 	<!-- /Update modal box *arron-->
-
-	<!--  Update modal box -->
-    <div class="modal fade" id="SkuEditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Edit Content</h4>
-                </div>
-                <asp:UpdatePanel ID="upEdit" runat="server">
-                    <ContentTemplate>
-                        <div class="modal-body">
-
-
-                            <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" Text="No.Order" AssociatedControlID="noOrder" />
-                                <asp:TextBox ID="noOrder" CssClass="form-control" runat="server" disabled="true" />
-                            </div>
-
-                            <div class="form-group">
-                                <asp:Label ID="Label2" runat="server" Text="Nama" AssociatedControlID="nama" />
-                                <asp:TextBox ID="nama" CssClass="form-control" runat="server" disabled="true" />
-                            </div>
-
-
-
-                            <div class="form-group">
-                                <asp:Label ID="Label3" runat="server" Text="Item" AssociatedControlID="item" />
-                                <asp:TextBox ID="item" CssClass="form-control" runat="server" />
-                            </div>
-
-                            <div class="form-group">
-                                <asp:Label ID="Label4" runat="server" Text="Service" AssociatedControlID="service" />
-                                <asp:TextBox ID="service" CssClass="form-control" runat="server" />
-                            </div>
-
-                            <div class="form-group">
-                                <asp:Label ID="Label5" runat="server" Text="Keterangan" AssociatedControlID="keterangan" />
-                                <asp:TextBox ID="keterangan" CssClass="form-control" runat="server" />
-                            </div>
-
-                            <div class="form-group">
-                                <asp:Label ID="Label6" runat="server" Text="Harga" AssociatedControlID="harga" />
-                                <asp:TextBox ID="harga" CssClass="form-control" runat="server" />
-                            </div>
-
-                            <div class="form-group">
-                                <asp:Label ID="Label7" runat="server" Text="Total" AssociatedControlID="total" />
-                                <asp:TextBox ID="total" CssClass="form-control" runat="server" />
-                            </div>
-
-
-                        </div>
-                        <div class="modal-footer">
-                            <asp:Button ID="BtnSaveSku" runat="server" Text="Update" CssClass="btn btn-info" OnClick="BtnSaveSku_Click" />
-                            <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
-                        </div>
-                    </ContentTemplate>
-                    <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="BtnSaveSku" EventName="Click" />
-                    </Triggers>
-                </asp:UpdatePanel>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-	<!-- /Update modal box -->
 
 	<!--  Tambah manual transaksi modal box -->
     <div class="modal fade" id="SkuAddModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -245,101 +160,88 @@
                             <br />
                             <div class="form-group">
                                 <asp:Label ID="Label14" runat="server" Text="SKU" />
-                                <asp:TextBox ID="tbnewSKU" CssClass="form-control" runat="server" Text="" />
+                                <asp:TextBox ID="tbnewSKU" onkeyup="SetButtonStatus()" CssClass="form-control" runat="server" Text="" placeholder="Masukan Kode SKU" />
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label21" runat="server" Text="Nama SKU" />
-                                <asp:TextBox ID="tbnewNamaSKU" CssClass="form-control" runat="server" Text="" />
+                                <asp:TextBox ID="tbnewNamaSKU" onkeyup="SetButtonStatus()" CssClass="form-control" runat="server" Text="" placeholder="Masukan Nama Barang"/>
                             </div>
                             <div class="form-group">
                                 <asp:Label ID="Label22" runat="server" Text="Berat" />
-                                <asp:TextBox ID="tbnewBerat" CssClass="form-control" runat="server" Text="" />
+                                <asp:TextBox ID="tbnewBerat" onkeyup="SetButtonStatus()" CssClass="form-control" runat="server" Text="" placeholder="Masukan Berat Barang"/>
                             </div>
-                            
-                            <ajaxToolkit:AsyncFileUpload ID="afuUpload" OnUploadedComplete="afuUpload_UploadedComplete" 
-                                OnUploadedFileError="afuUpload_UploadedFileError" runat="server" OnClientUploadComplete="uploadComplete"
-                                Width="400px" UploaderStyle="Traditional" UploadingBackColor="#CCFFFF" ThrobberID="myThrobber" />
-                            
                             <br />
-                            <br />
-                            <div style="border-style: solid; display: none; width: 350px" id="dvFileInfo">
-                                <asp:Image ID="gambarPro" runat="server"   />
-                                <asp:Label ID="lblStatus" Font-Bold="true" runat="server" Text="Status:-" />
-                                <asp:Label ID="lblSuccess" ForeColor="Green" runat="server" /><br />
-                                <asp:Label ID="lblFileName" Font-Bold="true" runat="server" Text="FileName :-" />
-                                <asp:Label ID="lblFileNameDisplay" runat="server" /><br />
-                                <asp:Label ID="lblFileSize" Font-Bold="true" runat="server" Text="File Size :- " />
-                                <asp:Label ID="lblFileSizeDisplay" runat="server" /><br />
-                                <asp:Label ID="lblContentType" Font-Bold="true" runat="server" Text="Content Type :-" />
-                                <asp:Label ID="lblContentTypeDisplay" runat="server" /><br />
-                            </div>
-                            <div style="border-style: solid; display: none; width: 350px" id="dvFileErrorInfo">
-                                <asp:Label ID="lblErrorStatus" Font-Bold="true" runat="server" Text="Status:-" />
-                                <asp:Label ID="lblError" ForeColor="Red" runat="server" /><br />
-                            </div>
                             <div class="form-group">
-                                <asp:FileUpload ID="inputfile" runat="server" onchange="showimagepreview(this)" accept=".jpg,.png,.jpeg"/>                                
-                                <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" height="150" width="150" />
-                                <asp:Label ID="tmWarning" ForeColor="Red" runat="server" />
-                            </div>                           
+                                <asp:Label ID="Label9" runat="server" Text="Gambar Produk" />
+                                <asp:FileUpload id="inputfile" runat="server" onchange="showimagepreview(this)" accept=".jpg" style="display:none"/>
+                            </div>                            
+                            <img id="image_upload_preview" class="img-thumbnail" src="Resources/insertgambar.jpg" style="cursor: pointer" alt="your image" height="150" width="150" />
+                            <div style="display: none; width: 350px" id="dvFileErrorInfo">
+                                <asp:Label ID="tmWarning" ForeColor="Red" Text="Size gambar harus di bawah 2 MB" runat="server" />
+                            </div>
+                            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(function () {
+                                    var fileupload = $("#inputfile");
+                                    $("body").on("click", "#image_upload_preview", function () {
+                                        document.getElementById("<%=inputfile.ClientID %>").click();
+                                    });
+                                });
+                            </script>
                             <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
                             <script type="text/javascript">
                                 function showimagepreview(input) {
                                     if (input.files && input.files[0]) {
+                                        if (input.files[0].size > 2097152) {
+                                            $get("dvFileErrorInfo").style.display = 'inline';
+                                            input.value = "";
+                                            $('#image_upload_preview').attr('src', "Resources/insertgambar.jpg");
+                                            return;
+                                        }
+                                        $get("dvFileErrorInfo").style.display = 'none';
                                         var filerdr = new FileReader();
                                         filerdr.onload = function (e) {
                                             $('#image_upload_preview').attr('src', e.target.result);
                                         }
                                         filerdr.readAsDataURL(input.files[0]);
                                     }
-                                    if (input.files[0].size > 2097152) {
-                                        alert("File is too big!");
-                                        $get("<%=tmWarning.ClientID%>").innerHTML = "File kudu lebih kecil dari 2 MB";
-                                        input.value = "";
+                                }
+                            </script>
+                            <script type="text/javascript">
+                                function SetButtonStatus() {
+                                    var tbnewSKU = document.getElementById('<%=tbnewSKU.ClientID%>').value;
+                                    var tbnewNamaSKU = document.getElementById('<%=tbnewNamaSKU.ClientID%>').value;
+                                    var tbnewBerat = document.getElementById('<%=tbnewBerat.ClientID%>').value;
+                                    //Change these conditions as your requirement
+                                    if (tbnewSKU == "" || tbnewNamaSKU == "" || tbnewBerat == "") {
+                                        document.getElementById('<%=BtnManualAddSaveSku.ClientID%>').disabled = true;
+                                    }
+                                    else {
+                                        document.getElementById('<%=BtnManualAddSaveSku.ClientID%>').disabled = false;
                                     }
                                 }
                             </script>
                             <script type="text/javascript">
-                                function uploadComplete(sender, args) {
-                                    try {
-                                        var fileExt = args.get_fileName();
-                                        if (parseInt(args.get_length()) > 2100000) {
-                                            $get("dvFileErrorInfo").style.display = 'block';
-                                            $get("<%=lblErrorStatus.ClientID%>").innerHTML = "File kudu lebih kecil dari 2 MB";
-                                            $get("dvFileInfo").style.display = 'none';
-                                            return;
-                                        }
-                                        if (fileExt.indexOf('.jpg') == -1) {
-                                            $get("dvFileErrorInfo").style.display = 'block';
-                                            $get("<%=lblErrorStatus.ClientID%>").innerHTML = "Harus file gambar .jpg";
-                                            $get("dvFileInfo").style.display = 'none';
-                                            return;
-                                        }
-                                        $get("dvFileInfo").style.display = 'block';
-                                        $get("dvFileErrorInfo").style.display = 'none';
-                                        $get("<%=lblSuccess.ClientID%>").innerHTML = "File uploaded";
-                                        $get("<%=lblFileNameDisplay.ClientID%>").innerHTML = args.get_fileName();
-                                        $get("<%=lblFileSizeDisplay.ClientID%>").innerHTML = args.get_length();
-                                        $get("<%=lblContentTypeDisplay.ClientID%>").innerHTML = args.get_contentType();
+                            function DisableButton() {
+                                document.forms[0].submit();
+                                window.setTimeout("disableButton('" +
+                                    window.event.srcElement.id + "')", 0);
+                            }
 
-                                        var photo = document.getElementById("afuUpload");
-                                        var file = photo.files[0];
-                                        var preview = document.getElementById("gambarPro");
-                                        preview.src = file.getAsDataURL();
-                                    }
-                                    catch (e) {
-                                        alert(e.message)
-                                    }
-                                }
-                            </script>
+                            function disableButton(buttonID) {
+                                document.getElementById(buttonID).disabled = true;
+                            }
+                            function BeginRequestHandler(sender, args) { var oControl = args.get_postBackElement(); oControl.disabled = true; }
+                        </script>
                         </div>
+                        <div class="col-xs-6 col-md-3"></div>
                         <div class="modal-footer">
-                            <asp:Button ID="BtnManualAddSaveSku" runat="server" Text="Simpan" CssClass="btn btn-info" OnClick="BtnManualAddSaveSku_Click" />
+                            <asp:Button ID="BtnManualAddSaveSku" runat="server" Text="Simpan" CssClass="btn btn-info" OnClick="BtnManualAddSaveSku_Click" Enabled="False" />
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                         </div>
                     </ContentTemplate>
                     <Triggers>
-                        <asp:AsyncPostBackTrigger ControlID="BtnManualAddSaveSku" EventName="Click" />
+                        <asp:PostBackTrigger ControlID="BtnManualAddSaveSku" />
                     </Triggers>
                 </asp:UpdatePanel>
             </div>

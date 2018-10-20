@@ -68,13 +68,13 @@ Partial Public Class masterData
     Protected WithEvents Label15 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lbidsku control.
+    '''lbeditidsku control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbidsku As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbeditidsku As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Label18 control.
@@ -86,13 +86,13 @@ Partial Public Class masterData
     Protected WithEvents Label18 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lbqty control.
+    '''lbeditqty control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbqty As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbeditqty As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Label20 control.
@@ -104,13 +104,13 @@ Partial Public Class masterData
     Protected WithEvents Label20 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''lbharga control.
+    '''lbeditharga control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents lbharga As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents lbeditharga As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''Label16 control.
@@ -122,13 +122,13 @@ Partial Public Class masterData
     Protected WithEvents Label16 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''tbsku control.
+    '''tbeditsku control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbsku As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents tbeditsku As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label17 control.
@@ -140,13 +140,13 @@ Partial Public Class masterData
     Protected WithEvents Label17 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''tbnamasku control.
+    '''tbeditnamasku control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbnamasku As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents tbeditnamasku As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''Label19 control.
@@ -158,13 +158,13 @@ Partial Public Class masterData
     Protected WithEvents Label19 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
-    '''tbberat control.
+    '''tbeditberat control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents tbberat As Global.System.Web.UI.WebControls.TextBox
+    Protected WithEvents tbeditberat As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
     '''BtnMdlUpdateSKU control.
@@ -183,150 +183,6 @@ Partial Public Class masterData
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents BtnMdlDeleteSKU As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''upEdit control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents upEdit As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''Label1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''noOrder control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents noOrder As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label2 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label2 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''nama control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents nama As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label3 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label3 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''item control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents item As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label4 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label4 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''service control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents service As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label5 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label5 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''keterangan control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents keterangan As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label6 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label6 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''harga control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents harga As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''Label7 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents Label7 As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''total control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents total As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''BtnSaveSku control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents BtnSaveSku As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''AddPanel1 control.
@@ -446,112 +302,13 @@ Partial Public Class masterData
     Protected WithEvents tbnewBerat As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
-    '''afuUpload control.
+    '''Label9 control.
     '''</summary>
     '''<remarks>
     '''Auto-generated field.
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
-    Protected WithEvents afuUpload As Global.AjaxControlToolkit.AsyncFileUpload
-    
-    '''<summary>
-    '''gambarPro control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents gambarPro As Global.System.Web.UI.WebControls.Image
-    
-    '''<summary>
-    '''lblStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblStatus As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblSuccess control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblSuccess As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFileName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFileName As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFileNameDisplay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFileNameDisplay As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFileSize control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFileSize As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblFileSizeDisplay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblFileSizeDisplay As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblContentType control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContentType As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblContentTypeDisplay control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblContentTypeDisplay As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblErrorStatus control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblErrorStatus As Global.System.Web.UI.WebControls.Label
-    
-    '''<summary>
-    '''lblError control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents lblError As Global.System.Web.UI.WebControls.Label
+    Protected WithEvents Label9 As Global.System.Web.UI.WebControls.Label
     
     '''<summary>
     '''inputfile control.
