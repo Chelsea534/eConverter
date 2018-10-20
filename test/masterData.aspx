@@ -83,7 +83,7 @@
             </Triggers>
         </asp:UpdatePanel>
     </div>
-    <!--  Edit SKU modal box *ARRON -->
+    <!--  Edit SKU modal box -->
     <div class="modal fade" id="myModalEditTabelSKU" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -119,6 +119,75 @@
                                 <asp:Label ID="Label19" runat="server" Text="Berat" />
                                 <asp:TextBox ID="tbeditberat" onkeyup="SetButtonStatus2()" CssClass="form-control" runat="server" />
                             </div>
+                            <br />
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" Text="Gambar Produk" />
+                                <asp:Label ID="lbPathGambar" runat="server" Text="~Path" style="display:none"/>
+                                <asp:FileUpload id="inputfile2" runat="server" onchange="showimagepreview2(this)" accept=".jpg" style="display:none"/>
+                            </div>                            
+                            <img id="image_upload_preview2" class="img-thumbnail" src="Resources/insertgambar.jpg" style="cursor: pointer" alt="your image" height="150" width="150" />
+                            <div style="display: none; width: 350px" id="dvFileErrorInfo2">
+                                <asp:Label ID="tmWarning2" ForeColor="Red" Text="Size gambar harus di bawah 2 MB" runat="server" />
+                            </div>
+                            <script type="text/javascript">
+                                function tampilGambar() {
+                                    var pathGambar = document.getElementById("<%=lbPathGambar.ClientID %>").innerHTML;
+                                    $('#image_upload_preview2').attr('src', pathGambar);
+                                }
+                            </script>
+                            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(function () {
+                                    $("body").on("click", "#image_upload_preview2", function () {
+                                        document.getElementById("<%=inputfile2.ClientID %>").click();
+                                    });
+                                });
+                            </script>
+                            <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+                            <script type="text/javascript">
+                                function showimagepreview2(input) {
+                                    if (input.files && input.files[0]) {
+                                        if (input.files[0].size > 2097152) {
+                                            $get("dvFileErrorInfo2").style.display = 'inline';
+                                            input.value = "";
+                                            $('#image_upload_preview2').attr('src', "Resources/insertgambar.jpg");
+                                            return;
+                                        }
+                                        $get("dvFileErrorInfo2").style.display = 'none';
+                                        var filerdr = new FileReader();
+                                        filerdr.onload = function (e) {
+                                            $('#image_upload_preview2').attr('src', e.target.result);
+                                        }
+                                        filerdr.readAsDataURL(input.files[0]);
+                                    }
+                                }
+                            </script>
+                            <script type="text/javascript">
+                                function SetButtonStatus2() {
+                                    var tbeditSKU = document.getElementById('<%=tbeditsku.ClientID%>').value;
+                                    var tbeditNamaSKU = document.getElementById('<%=tbeditnamasku.ClientID%>').value;
+                                    var tbeditBerat = document.getElementById('<%=tbeditberat.ClientID%>').value;
+                                    //Change these conditions as your requirement
+                                    if (tbeditSKU == "" || tbeditNamaSKU == "" || tbeditBerat == "") {
+                                        document.getElementById('<%=BtnMdlUpdateSKU.ClientID%>').disabled = true;
+                                        document.getElementById('<%=BtnMdlDeleteSKU.ClientID%>').disabled = true;
+                                    }
+                                    else {
+                                        document.getElementById('<%=BtnMdlUpdateSKU.ClientID%>').disabled = false;
+                                        document.getElementById('<%=BtnMdlDeleteSKU.ClientID%>').disabled = false;
+                                    }
+                                }
+                            </script>
+                            <script type="text/javascript">
+                            function DisableButton2() {
+                                document.forms[0].submit();
+                                window.setTimeout("disableButton2('" +
+                                    window.event.srcElement.id + "')", 0);
+                            }
+                            function disableButton2(buttonID) {
+                                document.getElementById(buttonID).disabled = true;
+                                }
+                        </script>
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="BtnMdlUpdateSKU" runat="server" Text="Update" CssClass="btn btn-info" OnClick="BtnMdlUpdateSKU_Click" />
@@ -126,6 +195,10 @@
                             <button class="btn btn-info" data-dismiss="modal" aria-hidden="true">Close</button>
                         </div>
                     </ContentTemplate>
+                    <Triggers>
+                        <asp:PostBackTrigger ControlID="BtnMdlUpdateSKU" />
+                       
+                    </Triggers>
                 </asp:UpdatePanel>
             </div>
             <!-- /.modal-content -->
@@ -182,7 +255,6 @@
                             <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
                             <script type="text/javascript">
                                 $(function () {
-                                    var fileupload = $("#inputfile");
                                     $("body").on("click", "#image_upload_preview", function () {
                                         document.getElementById("<%=inputfile.ClientID %>").click();
                                     });
@@ -257,14 +329,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel2">Add Manual</h4>
+                    <h4 class="modal-title" id="myModalLabel2">Konfirmasi</h4>
                 </div>
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <div class="modal-body">
-
                             <p>Hapus data? </p>
-
                         </div>
                         <div class="modal-footer">
                             <asp:Button ID="BtnDelSku" runat="server" Text="Hapus" CssClass="btn btn-info" OnClick="BtnDelSku_Click" />
@@ -272,7 +342,6 @@
                         </div>
                     </ContentTemplate>
                     <Triggers>
-
                         <asp:AsyncPostBackTrigger ControlID="BtnDelSku" EventName="Click" />
                     </Triggers>
                 </asp:UpdatePanel>

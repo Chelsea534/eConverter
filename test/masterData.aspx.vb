@@ -11,6 +11,8 @@ Public Class masterData
     Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         If Not Page.IsPostBack Then
             BtnManualAddSaveSku.Attributes.Add("onclick", "DisableButton()")
+            BtnMdlUpdateSKU.Attributes.Add("onclick", "DisableButton2()")
+
             Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
             Dim conn As New MySqlConnection(constr)
             Try
@@ -51,6 +53,7 @@ Public Class masterData
                 datardr.Read()
                 Return datardr("AUTO_INCREMENT")
             End If
+            conn.Close()
         Catch ex As Exception
             MsgBox(ex.Message)
         End Try
@@ -154,6 +157,7 @@ Public Class masterData
                     End Using
                 End Using
             End Using
+            File.Delete(Server.MapPath(lbPathGambar.Text))
             viewTabelSKU()
         Catch ex As Exception
             MsgBox(ex.ToString)
@@ -166,12 +170,16 @@ Public Class masterData
         Try
             Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
             Using con As New MySqlConnection(constr)
-                Using cmd As New MySqlCommand("UPDATE TABEL_SKU SET SKU = @SKU, NAMA = @NAMA, BERAT = @BERAT WHERE ID_SKU = @ID_SKU")
+                Using cmd As New MySqlCommand("UPDATE TABEL_SKU SET SKU = @SKU, NAMA = @NAMA, BERAT = @BERAT, GAMBAR_PATH = @GAMBAR_PATH WHERE ID_SKU = @ID_SKU")
                     Using sda As New MySqlDataAdapter()
                         cmd.Parameters.AddWithValue("@ID_SKU", lbeditidsku.Text)
                         cmd.Parameters.AddWithValue("@SKU", tbeditsku.Text)
                         cmd.Parameters.AddWithValue("@NAMA", tbeditnamasku.Text)
                         cmd.Parameters.AddWithValue("@BERAT", tbeditberat.Text)
+                        cmd.Parameters.AddWithValue("@GAMBAR_PATH", "~/GambarProduk/" & lbeditidsku.Text & ".jpg")
+                        If inputfile2.HasFile Then
+                            inputfile2.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & lbeditidsku.Text & ".jpg")
+                        End If
                         cmd.Connection = con
                         con.Open()
                         cmd.ExecuteNonQuery()
@@ -180,10 +188,14 @@ Public Class masterData
                 End Using
             End Using
             viewTabelSKU()
+            closeModal("#myModalEditTabelSKU")
+            'Mencegah form re submit
+            Response.Redirect("masterData.aspx", False)
+            Context.ApplicationInstance.CompleteRequest()
         Catch ex As Exception
             MsgBox(ex.ToString)
         End Try
-        closeModal("#myModalEditTabelSKU")
+
     End Sub
     'HAPUS SKU
     Protected Sub BtnMdlDeleteSKU_Click(sender As Object, e As EventArgs)
@@ -191,15 +203,36 @@ Public Class masterData
     End Sub
 
     Protected Sub DisplayEditSKU(sender As Object, e As EventArgs)
-        Dim rowIndex As Integer = Convert.ToInt32(TryCast(TryCast(sender, LinkButton).NamingContainer, GridViewRow).RowIndex)
-        Dim row As GridViewRow = GridView1.Rows(rowIndex)
-        lbidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
-        tbsku.Text = TryCast(row.FindControl("SKU"), Label).Text
-        tbnamasku.Text = TryCast(row.FindControl("NAMA"), Label).Text
-        lbqty.Text = TryCast(row.FindControl("QTY"), Label).Text
-        tbberat.Text = TryCast(row.FindControl("BERAT"), Label).Text
-        lbharga.Text = TryCast(row.FindControl("HARGA"), Label).Text
-        'ClientScript.RegisterStartupScript(Me.[GetType](), "Pop", "openModalEditSKU();", True)
+        Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
+        Dim conn As New MySqlConnection(constr)
+        Try
+            conn.Open()
+            Dim rowIndex As Integer = Convert.ToInt32(TryCast(TryCast(sender, LinkButton).NamingContainer, GridViewRow).RowIndex)
+            Dim row As GridViewRow = GridView1.Rows(rowIndex)
+            lbeditidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
+            Dim cmd As New MySqlCommand("SELECT `SKU`,`NAMA`,`QTY`,`BERAT`,`HARGA`,`GAMBAR_PATH` FROM TABEL_SKU WHERE ID_SKU = @ID_SKU")
+            cmd.Parameters.AddWithValue("@ID_SKU", lbeditidsku.Text)
+            cmd.Connection = conn
+            Dim sda As New MySqlDataAdapter()
+            sda.SelectCommand = cmd
+            Dim datardr As MySqlDataReader = cmd.ExecuteReader
+            If datardr.HasRows Then
+                datardr.Read()
+                tbeditsku.Text = datardr("SKU")
+                tbeditnamasku.Text = datardr("NAMA")
+                lbeditqty.Text = datardr("QTY")
+                tbeditberat.Text = datardr("BERAT")
+                lbeditharga.Text = datardr("HARGA")
+                lbPathGambar.Text = datardr("GAMBAR_PATH").ToString.Replace("~", "")
+            End If
+            conn.Close()
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "Script", "tampilGambar();", True)
+            'image_upload_preview2.Src = lbPathGambar.Text
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+
+        'lbeditidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
         showModal("#myModalEditTabelSKU")
     End Sub
 

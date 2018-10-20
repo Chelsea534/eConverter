@@ -167,6 +167,42 @@ Partial Public Class masterData
     Protected WithEvents tbeditberat As Global.System.Web.UI.WebControls.TextBox
     
     '''<summary>
+    '''Label1 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents Label1 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''lbPathGambar control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents lbPathGambar As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
+    '''inputfile2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents inputfile2 As Global.System.Web.UI.WebControls.FileUpload
+    
+    '''<summary>
+    '''tmWarning2 control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents tmWarning2 As Global.System.Web.UI.WebControls.Label
+    
+    '''<summary>
     '''BtnMdlUpdateSKU control.
     '''</summary>
     '''<remarks>
