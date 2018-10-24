@@ -86,7 +86,19 @@
                             <a href="Default"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
 						 <li>
-                            <a href="masterData"><i class="fa fa-archive fa-fw"></i> Master Data</a>
+                            <a href="#"><i class="fa fa-archive fa-fw"></i> Master Data<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="tabelSku"><i class="fa fa-table"></i> Tabel SKU</a>
+                                </li>
+								<li>
+                                    <a href="tabelSupplier"><i class ="fa fa-table"></i> Tabel Supplier</a>
+                                </li>
+								<li>
+                                    <a href="tabelSales"><i class ="fa fa-table "></i> Table Sales</a>
+                                </li>
+                                
+                            </ul>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-spinner fa-fw"></i> Proses Order<span class="fa arrow"></span></a>

@@ -1,9 +1,9 @@
-﻿<%@ Page Language="vb" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="masterData.aspx.vb" Inherits="test.masterData" %>
+﻿<%@ Page Language="vb" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="tabelSku.aspx.vb" Inherits="test.tabelSku" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" enctype="multipart/form-data">
-    <div class="row">
+	<div class="row">
 		<div class="col-lg-12">
-			<h1 class="page-header">Master Data</h1>
+			<h1 class="page-header">Tabel SKU</h1>
 		</div>
 	</div>
 
@@ -20,8 +20,8 @@
                     <ContentTemplate>
                         <div class="hidden alert alert-success" role="alert" id="updateAlert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <strong>Success!</strong> 1 Data telah di update!
-                        </div>
+                        <strong>Success!</strong> 1 Data telah di update!
+						</div>
                         <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False"
                             DataKeyNames="ID_SKU">
                             <Columns>
@@ -83,6 +83,8 @@
             </Triggers>
         </asp:UpdatePanel>
     </div>
+                    <asp:Button ID="ButtonDummy1" CssClass="btn btn-success btn-block" Text="Dummy" runat="server" OnClick="ButtonDummy1_Click" />
+
     <!--  Edit SKU modal box -->
     <div class="modal fade" id="myModalEditTabelSKU" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -353,119 +355,4 @@
 	<!-- /Hapus data modal box -->
 
 	<!--/Table Sku -->
-
-	<!-- Table Supplier -->
-		<div class="row">
-		<div class="col-lg-12">
-			<h4 class="page-header">Supplier Table</h4>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12">
-			<table class="table table-striped table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Rendering engine</th>
-						<th>Browser</th>
-						<th>Platform(s)</th>
-						<th>Engine version</th>
-						<th>CSS grade</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="">
-						<td>Trident</td>
-						<td>Internet Explorer 4.0</td>
-						<td>Win 95+</td>
-						<td class="center">4</td>
-						<td class="center">X</td>
-					</tr>
-					<tr class="even gradeC">
-						<td>Trident</td>
-						<td>Internet Explorer 5.0</td>
-						<td>Win 95+</td>
-						<td class="center">5</td>
-						<td class="center">C</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row page-header">
-			<asp:UpdatePanel ID="tableControllerSup" runat="server">
-				<ContentTemplate>
-			<div class="col-lg-3 col-md-3 form-group">						
-							<asp:Button ID="BtnAddSup" CssClass="btn btn-success btn-block" Text="Tambah Transaksi Manual" runat="server" OnClick="BtnAddSup_Click" />
-						</div>
-					<div class="col-lg-3 col-md-3 form-group">
-								<asp:Button ID="BtnUpdateSup" CssClass="btn btn-primary btn-block" Text="Edit" runat="server" OnClick="BtnUpdateSup_Click" />						
-						</div>
-					<div class="col-lg-3 col-md-3 form-group">
-								<asp:Button ID="BtnDelSup" CssClass="btn  btn-danger btn-block" Text="Hapus" runat="server" OnClick="BtnDelSup_Click" />	
-						</div>
-					</ContentTemplate>
-						  <Triggers>
-                </Triggers>
-				</asp:UpdatePanel>
-	</div>
-	<!-- /Table Supplier -->
-
-	<!-- Table Sales -->
-		<div class="row">
-		<div class="col-lg-12">
-			<h4 class="page-header">Sales Table</h4>
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-12">
-			<table class="table table-striped table-bordered table-hover">
-				<thead>
-					<tr>
-						<th>Rendering engine</th>
-						<th>Browser</th>
-						<th>Platform(s)</th>
-						<th>Engine version</th>
-						<th>CSS grade</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="">
-						<td>Trident</td>
-						<td>Internet Explorer 4.0</td>
-						<td>Win 95+</td>
-						<td class="center">4</td>
-						<td class="center">X</td>
-					</tr>
-					<tr class="even gradeC">
-						<td>Trident</td>
-						<td>Internet Explorer 5.0</td>
-						<td>Win 95+</td>
-						<td class="center">5</td>
-						<td class="center">C</td>
-					</tr>
-
-				</tbody>
-			</table>
-		</div>
-	</div>
-	<div class="row page-header">
-			<asp:UpdatePanel ID="tableControllerSales" runat="server">
-				<ContentTemplate>
-			<div class="col-lg-3 col-md-3 form-group">						
-							<asp:Button ID="BtnAddSal" CssClass="btn btn-success btn-block" Text="Tambah Transaksi Manual" runat="server" OnClick="BtnAddSal_Click" />
-						</div>
-					<div class="col-lg-3 col-md-3 form-group">
-								<asp:Button ID="BtnUpdateSal" CssClass="btn btn-primary btn-block" Text="Edit" runat="server" OnClick="BtnUpdateSal_Click" />						
-						</div>
-					<div class="col-lg-3 col-md-3 form-group">
-								<asp:Button ID="BtnDelSal" CssClass="btn  btn-danger btn-block" Text="Hapus" runat="server" OnClick="BtnDelSal_Click" />	
-						</div>
-					</ContentTemplate>
-						  <Triggers>
-                </Triggers>
-				</asp:UpdatePanel>
-	</div>
-    <!-- /Table Sales -->
 </asp:Content>

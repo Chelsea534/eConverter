@@ -457,3 +457,7 @@ table.dataTable thead .sorting:after {
 	bottom: 10px;
 	position: absolute;
 }
+
+.hidden {
+display:none;
+}
