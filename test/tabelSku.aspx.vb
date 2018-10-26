@@ -74,11 +74,11 @@ Public Class tabelSku
 		ScriptManager.RegisterClientScriptBlock(Me, Me.GetType, modal & "close-MasterDataScript", builder.ToString(), False)
 	End Sub
 	Sub removeHidden()
-		Dim builder As New StringBuilder()
-		builder.Append("<script type='text/javascript'>")
-		builder.Append("$('#updateAlert').removeClass('hidden');")
-		builder.Append("</script>")
-		ScriptManager.RegisterClientScriptBlock(Me, Me.GetType, "removeHidden-TableSKUScript", builder.ToString(), False)
+
+		Dim cls As String = updateAlert.Attributes("class")
+		Dim newCls As String = cls.Replace("hidden", "")
+		updateAlert.Attributes("class") = newCls
+
 	End Sub
 
 
@@ -175,11 +175,12 @@ Public Class tabelSku
 
 			'Mencegah form re submit
 			Response.Redirect("tabelSku.aspx", False)
+			removeHidden()
 			Context.ApplicationInstance.CompleteRequest()
 		Catch ex As Exception
 			MsgBox(ex.ToString)
 		End Try
-		removeHidden()
+		'removeHidden()
 	End Sub
 	'HAPUS SKU
 	Protected Sub BtnMdlDeleteSKU_Click(sender As Object, e As EventArgs)
@@ -249,6 +250,7 @@ Public Class tabelSku
 	End Sub
 
 	Protected Sub ButtonDummy1_Click(sender As Object, e As EventArgs) Handles ButtonDummy1.Click
+		'MsgBox("something")
 		removeHidden()
 	End Sub
 

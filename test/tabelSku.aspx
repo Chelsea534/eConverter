@@ -18,7 +18,7 @@
             <div class="table-responsive">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
-                        <div class="hidden alert alert-success" role="alert" id="updateAlert">
+                        <div id="updateAlert" class="hidden alert alert-success" role="alert"  runat="server">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <strong>Success!</strong> 1 Data telah di update!
 						</div>
