@@ -14,6 +14,42 @@ Option Explicit On
 Partial Public Class tabelSku
     
     '''<summary>
+    '''alertTBSukses control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertTBSukses As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''alertUBSukses control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertUBSukses As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''alertHBSukses control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertHBSukses As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
+    '''alertGagal control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents alertGagal As Global.System.Web.UI.HtmlControls.HtmlGenericControl
+    
+    '''<summary>
     '''UpdatePanel4 control.
     '''</summary>
     '''<remarks>
@@ -21,15 +57,6 @@ Partial Public Class tabelSku
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents UpdatePanel4 As Global.System.Web.UI.UpdatePanel
-    
-    '''<summary>
-    '''updateAlert control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents updateAlert As Global.System.Web.UI.HtmlControls.HtmlGenericControl
     
     '''<summary>
     '''GridView1 control.
@@ -57,15 +84,6 @@ Partial Public Class tabelSku
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents BtnAddSku As Global.System.Web.UI.WebControls.Button
-    
-    '''<summary>
-    '''ButtonDummy1 control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents ButtonDummy1 As Global.System.Web.UI.WebControls.Button
     
     '''<summary>
     '''UpdatePanel2 control.

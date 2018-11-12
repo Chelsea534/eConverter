@@ -7,23 +7,33 @@ Imports System.IO
 
 Public Class tabelSku
 	Inherits System.Web.UI.Page
-	'Public conn As MySqlConnection
-	Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-		If Not Page.IsPostBack Then
-			BtnManualAddSaveSku.Attributes.Add("onclick", "DisableButton()")
-			BtnMdlUpdateSKU.Attributes.Add("onclick", "DisableButton2()")
-
-			Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
-			Dim conn As New MySqlConnection(constr)
-			Try
-				conn.Open()
-				viewTabelSKU()
-			Catch ex As Exception
-				MsgBox(ex.Message)
-			End Try
-		End If
-	End Sub
-	Sub viewTabelSKU()
+    'Public conn As MySqlConnection
+    Protected Sub Page_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        If Not Page.IsPostBack Then
+            'MsgBox("Not Page.IsPostBack ")
+            BtnManualAddSaveSku.Attributes.Add("onclick", "DisableButton()")
+            BtnMdlUpdateSKU.Attributes.Add("onclick", "DisableButton2()")
+            Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
+            Dim conn As New MySqlConnection(constr)
+            Try
+                conn.Open()
+                viewTabelSKU()
+            Catch ex As Exception
+                MsgBox(ex.Message)
+            End Try
+        End If
+        Dim s As String = Request.QueryString("ID")
+        If s = "alertUBSukses" Then
+            tampilAlert(alertUBSukses)
+        ElseIf s = "alertTBSukses" Then
+            tampilAlert(alertTBSukses)
+        ElseIf s = "alertHBSukses" Then
+            tampilAlert(alertHBSukses)
+        ElseIf s = "alertGagal" Then
+            tampilAlert(alertGagal)
+        End If
+    End Sub
+    Sub viewTabelSKU()
 		Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
 		Using con As New MySqlConnection(constr)
 			Using cmd As New MySqlCommand("SELECT * FROM TABEL_SKU")
@@ -73,16 +83,13 @@ Public Class tabelSku
 		builder.Append("</script>")
 		ScriptManager.RegisterClientScriptBlock(Me, Me.GetType, modal & "close-MasterDataScript", builder.ToString(), False)
 	End Sub
-	Sub removeHidden()
+    Sub tampilAlert(alertlabel As HtmlGenericControl)
+        Dim cls As String = alertlabel.Attributes("class")
+        Dim newCls As String = cls.Replace("hidden", "")
+        alertlabel.Attributes("class") = newCls
+    End Sub
 
-		Dim cls As String = updateAlert.Attributes("class")
-		Dim newCls As String = cls.Replace("hidden", "")
-		updateAlert.Attributes("class") = newCls
-
-	End Sub
-
-
-	Protected Sub BtnAddSku_Click(sender As Object, e As EventArgs) Handles BtnAddSku.Click
+    Protected Sub BtnAddSku_Click(sender As Object, e As EventArgs) Handles BtnAddSku.Click
 		tbnewSKU.Text = ""
 		tbnewNamaSKU.Text = ""
 		tbnewBerat.Text = ""
@@ -117,12 +124,15 @@ Public Class tabelSku
 			End Using
 			viewTabelSKU()
 			closeModal("#SkuAddModal")
-			'Mencegah form re submit
-			Response.Redirect("masterData.aspx", False)
-			Context.ApplicationInstance.CompleteRequest()
+            'Mencegah form re submit
+            Response.Redirect("tabelSku.aspx?ID=alertTBSukses", False)
+            Context.ApplicationInstance.CompleteRequest()
 		Catch ex As Exception
-			MsgBox(ex.ToString)
-		End Try
+            MsgBox(ex.ToString)
+            'Mencegah form re submit
+            Response.Redirect("tabelSku.aspx?ID=alertGagal", False)
+            Context.ApplicationInstance.CompleteRequest()
+        End Try
 
 	End Sub
 
@@ -141,13 +151,20 @@ Public Class tabelSku
 				End Using
 			End Using
 			File.Delete(Server.MapPath(lbPathGambar.Text))
-			viewTabelSKU()
-		Catch ex As Exception
-			MsgBox(ex.ToString)
-		End Try
-		closeModal("#SkuDeleteModal")
-		closeModal("#myModalEditTabelSKU")
-	End Sub
+            viewTabelSKU()
+            closeModal("#SkuDeleteModal")
+            closeModal("#myModalEditTabelSKU")
+            'solusi supaya tidak post double ketika refresh
+            Response.Redirect("tabelSku.aspx?ID=alertHBSukses", False)
+            Context.ApplicationInstance.CompleteRequest()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            'Mencegah form re submit
+            Response.Redirect("tabelSku.aspx?ID=alertGagal", False)
+            Context.ApplicationInstance.CompleteRequest()
+        End Try
+
+    End Sub
 	'UPDATE SKU
 	Protected Sub BtnMdlUpdateSKU_Click(sender As Object, e As EventArgs)
 		Try
@@ -171,15 +188,16 @@ Public Class tabelSku
 				End Using
 			End Using
 			viewTabelSKU()
-			closeModal("#myModalEditTabelSKU")
-
-			'Mencegah form re submit
-			Response.Redirect("tabelSku.aspx", False)
-			removeHidden()
-			Context.ApplicationInstance.CompleteRequest()
-		Catch ex As Exception
-			MsgBox(ex.ToString)
-		End Try
+            closeModal("#myModalEditTabelSKU")
+            'solusi supaya tidak post double ketika refresh
+            Response.Redirect("tabelSku.aspx?ID=alertUBSukses", False)
+            Context.ApplicationInstance.CompleteRequest()
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+            'Mencegah form re submit
+            Response.Redirect("tabelSku.aspx?ID=alertGagal", False)
+            Context.ApplicationInstance.CompleteRequest()
+        End Try
 		'removeHidden()
 	End Sub
 	'HAPUS SKU
@@ -187,71 +205,38 @@ Public Class tabelSku
 		showModal("#SkuDeleteModal")
 	End Sub
 
-	Protected Sub DisplayEditSKU(sender As Object, e As EventArgs)
-		Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
-		Dim conn As New MySqlConnection(constr)
-		Try
-			conn.Open()
-			Dim rowIndex As Integer = Convert.ToInt32(TryCast(TryCast(sender, LinkButton).NamingContainer, GridViewRow).RowIndex)
-			Dim row As GridViewRow = GridView1.Rows(rowIndex)
-			lbeditidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
-			Dim cmd As New MySqlCommand("SELECT `SKU`,`NAMA`,`QTY`,`BERAT`,`HARGA`,`GAMBAR_PATH` FROM TABEL_SKU WHERE ID_SKU = @ID_SKU")
-			cmd.Parameters.AddWithValue("@ID_SKU", lbeditidsku.Text)
-			cmd.Connection = conn
-			Dim sda As New MySqlDataAdapter()
-			sda.SelectCommand = cmd
-			Dim datardr As MySqlDataReader = cmd.ExecuteReader
-			If datardr.HasRows Then
-				datardr.Read()
-				tbeditsku.Text = datardr("SKU")
-				tbeditnamasku.Text = datardr("NAMA")
-				lbeditqty.Text = datardr("QTY")
-				tbeditberat.Text = datardr("BERAT")
-				lbeditharga.Text = datardr("HARGA")
-				lbPathGambar.Text = datardr("GAMBAR_PATH").ToString.Replace("~", "")
-			End If
-			conn.Close()
-			System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "Script", "tampilGambar();", True)
-			'image_upload_preview2.Src = lbPathGambar.Text
-		Catch ex As Exception
-			MsgBox(ex.Message)
-		End Try
+    Protected Sub DisplayEditSKU(sender As Object, e As EventArgs)
+        Dim constr As String = ConfigurationManager.ConnectionStrings("connect").ConnectionString
+        Dim conn As New MySqlConnection(constr)
+        Try
+            conn.Open()
+            Dim rowIndex As Integer = Convert.ToInt32(TryCast(TryCast(sender, LinkButton).NamingContainer, GridViewRow).RowIndex)
+            Dim row As GridViewRow = GridView1.Rows(rowIndex)
+            lbeditidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
+            Dim cmd As New MySqlCommand("SELECT `SKU`,`NAMA`,`QTY`,`BERAT`,`HARGA`,`GAMBAR_PATH` FROM TABEL_SKU WHERE ID_SKU = @ID_SKU")
+            cmd.Parameters.AddWithValue("@ID_SKU", lbeditidsku.Text)
+            cmd.Connection = conn
+            Dim sda As New MySqlDataAdapter()
+            sda.SelectCommand = cmd
+            Dim datardr As MySqlDataReader = cmd.ExecuteReader
+            If datardr.HasRows Then
+                datardr.Read()
+                tbeditsku.Text = datardr("SKU")
+                tbeditnamasku.Text = datardr("NAMA")
+                lbeditqty.Text = datardr("QTY")
+                tbeditberat.Text = datardr("BERAT")
+                lbeditharga.Text = datardr("HARGA")
+                lbPathGambar.Text = datardr("GAMBAR_PATH").ToString.Replace("~", "")
+            End If
+            conn.Close()
+            System.Web.UI.ScriptManager.RegisterClientScriptBlock(Page, GetType(Page), "Script", "tampilGambar();", True)
+            'image_upload_preview2.Src = lbPathGambar.Text
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
 
-		'lbeditidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
-		showModal("#myModalEditTabelSKU")
-	End Sub
-
-	Protected Sub upload_Click(sender As Object, e As EventArgs)
-		MsgBox("simvan")
-		'If fileupload1.HasFile Then
-		'Dim strname As String
-		'strname = fileupload1.FileName.ToString()
-		'MsgBox(strname)
-		'fileupload1.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & strname)
-		'FileUpload.SaveAs(Server.MapPath("~/GambarProduk/" & strname))
-		'End If
-	End Sub
-
-	Protected Sub Button1_Click(sender As Object, e As EventArgs)
-		'MsgBox("simvanmonobox")
-		'If AsyncFileUpload1.HasFile Then
-		'Dim fileSize As Double = CDbl(AsyncFileUpload1.FileBytes.Length)
-		'Dim fileinMB As Double = fileSize / (1024 * 1024)
-		'If fileinMB <= 2 Then
-		'Dim strname As String
-		'strname = AsyncFileUpload1.FileName.ToString()
-		'AsyncFileUpload1.PostedFile.SaveAs(Server.MapPath("~/GambarProduk/") & strname)
-		'MsgBox(strname & " sukses disimpan")
-		'FileUpload.SaveAs(Server.MapPath("~/GambarProduk/" & strname))xxx
-		'Else
-		' MsgBox("File kudu < 2 MB")
-		'End If
-		'End If
-	End Sub
-
-	Protected Sub ButtonDummy1_Click(sender As Object, e As EventArgs) Handles ButtonDummy1.Click
-		'MsgBox("something")
-		removeHidden()
-	End Sub
+        'lbeditidsku.Text = TryCast(row.FindControl("ID_SKU"), Label).Text
+        showModal("#myModalEditTabelSKU")
+    End Sub
 
 End Class

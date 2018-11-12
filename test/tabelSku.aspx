@@ -6,7 +6,34 @@
 			<h1 class="page-header">Tabel SKU</h1>
 		</div>
 	</div>
-
+    <!-- Alert Sukses -->
+    <div id="alertTBSukses" class="hidden alert alert-success" role="alert" runat="server">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>SUKSES!</strong> 1 Data telah di tambahkan!
+    </div>
+    <div id="alertUBSukses" class="hidden alert alert-success" role="alert" runat="server">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>SUKSES!</strong> 1 Data telah di update!
+    </div>
+    <div id="alertHBSukses" class="hidden alert alert-success" role="alert" runat="server">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>SUKSES!</strong> 1 Data telah di hapus!
+    </div>
+    <!-- Alert Gagal-->
+    <div id="alertGagal" class="hidden alert alert-danger" role="alert" runat="server">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong>ERROR!</strong> Query tidak berhasil!
+    </div>    
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        window.setTimeout(function () {
+            $(".alert").fadeTo(1500, 0).slideUp(500, function () {
+                $(this).remove();
+            });
+        }, 1000);
+    });
+    </script>
 	<!-- SKU Table -->
 	<div class="row">
 		<div class="col-lg-12">
@@ -18,10 +45,7 @@
             <div class="table-responsive">
                 <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                     <ContentTemplate>
-                        <div id="updateAlert" class="hidden alert alert-success" role="alert"  runat="server">
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <strong>Success!</strong> 1 Data telah di update!
-						</div>
+                        
                         <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered table-hover table-striped" AutoGenerateColumns="False"
                             DataKeyNames="ID_SKU">
                             <Columns>
@@ -83,8 +107,7 @@
             </Triggers>
         </asp:UpdatePanel>
     </div>
-                    <asp:Button ID="ButtonDummy1" CssClass="btn btn-success btn-block" Text="Dummy" runat="server" OnClick="ButtonDummy1_Click" />
-
+                    
     <!--  Edit SKU modal box -->
     <div class="modal fade" id="myModalEditTabelSKU" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
